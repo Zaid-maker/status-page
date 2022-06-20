@@ -11,15 +11,16 @@
   <body>
     <div class="pageContainer">
       <div class="headline">
-        <span>System Status</span>
+        <img src="logo.svg" alt="Logo" width="200px" />
+        <span> System Status </span>
       </div>
-      <div class="reportContainer" id="reports"></div>
-      <div class="tooltip" id="tooltip" style="opacity: 0">
-        <div class="tooltipArrow" id="tooltipArrow"></div>
-        <div class="tooltipDateTime" id="tooltipDateTime"></div>
-        <div class="tooltipStatus" id="tooltipStatus"></div>
+      <div id="reports" class="reportContainer"></div>
+      <div id="tooltip" class="tooltip" style="opacity: 0">
+        <div id="tooltipArrow" class="tooltipArrow"></div>
+        <div id="tooltipDateTime" class="tooltipDateTime"></div>
+        <div id="tooltipStatus" class="tooltipStatus"></div>
         <hr />
-        <div class="tooltipDescription" id="tooltipDescription"></div>
+        <div id="tooltipDescription" class="tooltipDescription"></div>
       </div>
       <div id="templates" style="display: none">
         <div
@@ -44,9 +45,9 @@
         </div>
       </div>
     </div>
-
-    <script>
-      genAllReports();
-    </script>
   </body>
+
+  <script>
+    genAllReports();
+  </script>
 </html>
