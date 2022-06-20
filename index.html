@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Status Page</title>
+  </head>
+  <body>
+    <div class="pageContainer">
+      <div class="headline">
+        <span>System Status</span>
+      </div>
+      <div class="reportContainer" id="reports"></div>
+      <div class="tooltip" id="tooltip" style="opacity: 0">
+        <div class="tooltipArrow" id="tooltipArrow"></div>
+        <div class="tooltipDateTime" id="tooltipDateTime"></div>
+        <div class="tooltipStatus" id="tooltipStatus"></div>
+        <hr />
+        <div class="tooltipDescription" id="tooltipDescription"></div>
+      </div>
+      <div id="templates" style="display: none">
+        <div
+          id="statusSquareTemplate"
+          class="statusSquare $color"
+          data-status="$color"
+        ></div>
+        <div id="statusLineTemplate" class="statusLine"></div>
+        <div
+          id="statusStreamContainerTemplate"
+          class="statusStreamContainer"
+        ></div>
+        <div id="statusContainerTemplate" class="statusContainer">
+          <div class="statusHeader">
+            <h6 class="statusTitle">$title&nbsp;</h6>
+            <div class="$color statusHeadline">$status</div>
+          </div>
+          <div class="statusSubtitle">
+            <div class="sectionUrl"><a href="$url">$url</a></div>
+            <div class="statusUptime">$upTime in the last 30 days</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./main.js"></script>
+    <script>
+      getAllReports();
+    </script>
+  </body>
+</html>
