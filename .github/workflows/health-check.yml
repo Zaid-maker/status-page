@@ -1,0 +1,15 @@
+name: Scheduled Health Check of all sites
+
+on:
+  schedule:
+    -cron: "30 * * * *"
+
+jobs:
+  health_check_job:
+    runs-on: ubuntu-latest
+    name: check all sites
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Shell Script
+        id: shell-script_run
+        run: bash ./health-check.sh
