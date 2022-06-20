@@ -1,6 +1,6 @@
 const maxDays = 30;
 
-async function getReporting(container, key, url) {
+async function genReportLog(container, key, url) {
   const response = await fetch("logs/" + key + "_report.log");
   let statusLines = "";
   if (response.ok) {
@@ -118,6 +118,23 @@ function getStatusText(color) {
     : "Unknown";
 }
 
+function getStatusDescriptiveText(color) {
+  return color == "nodata"
+    ? "No Data Available: Health Check was not performed."
+    : color == "success"
+    ? "No downtime recorded on this day."
+    : color == "failure"
+    ? "Major Outages recorded on this day."
+    : color == "partial"
+    ? "Partial Outages recorded on this day."
+    : "Unknown";
+}
+
+function getTooltip(key, date, quartile, color) {
+  let statusText = getStatusText(color);
+  return `${key} | ${date.toDateString()} : ${quartile} : ${statusText}`;
+}
+
 function create(tag, className) {
   let element = document.createElement(tag);
   element.className = className;
@@ -193,7 +210,7 @@ function splitRowsByDate(rows) {
   return dateValues;
 }
 
-async function getAllReports() {
+async function genAllReports() {
   const response = await fetch("urls.cfg");
   const configText = await response.text();
   const configLines = configText.split("\n");
@@ -204,6 +221,6 @@ async function getAllReports() {
       continue;
     }
 
-    await getReporting(document.getElementById("reports"), key, url);
+    await genReportLog(document.getElementById("reports"), key, url);
   }
 }
