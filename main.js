@@ -210,6 +210,32 @@ function splitRowsByDate(rows) {
   return dateValues;
 }
 
+let tooltipTimeout = null;
+function showTooltip(element, key, date, color) {
+  clearTimeout(tooltipTimeout);
+  const toolTipDiv = document.getElementById("tooltip");
+
+  document.getElementById("tooltipDateTime").innerText = date.toDateString();
+  document.getElementById("tooltipDescription").innerText =
+    getStatusDescriptiveText(color);
+
+  const statusDiv = document.getElementById("tooltipStatus");
+  statusDiv.innerText = getStatusText(color);
+  statusDiv.className = color;
+
+  toolTipDiv.style.top = element.offsetTop + element.offsetHeight + 10;
+  toolTipDiv.style.left =
+    element.offsetLeft + element.offsetWidth / 2 - toolTipDiv.offsetWidth / 2;
+  toolTipDiv.style.opacity = "1";
+}
+
+function hideTooltip() {
+  tooltipTimeout = setTimeout(() => {
+    const toolTipDiv = document.getElementById("tooltip");
+    toolTipDiv.style.opacity = "0";
+  }, 1000);
+}
+
 async function genAllReports() {
   const response = await fetch("urls.cfg");
   const configText = await response.text();
