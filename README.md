@@ -1,0 +1,3 @@
+[![Scheduled Health Check](https://github.com/Zaid-maker/status-page/actions/workflows/health-check.yml/badge.svg)](https://github.com/Zaid-maker/status-page/actions/workflows/health-check.yml)
+
+[![pages-build-deployment](https://github.com/Zaid-maker/status-page/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Zaid-maker/status-page/actions/workflows/pages/pages-build-deployment)
