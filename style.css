@@ -21,6 +21,11 @@ body {
   text-align: center;
   transition: opacity 0.3s;
 }
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-bottom: solid 1px #ddd;
+}
 h1,
 h2,
 h3,
@@ -131,7 +136,8 @@ footer a {
   text-transform: uppercase;
 }
 
-.reportContainer {
+.reportContainer,
+.incidentsContainer {
   margin: 30px auto;
   width: 100%;
 }
@@ -294,6 +300,14 @@ footer a {
   border: none;
   border-top: 1px solid #ededed;
   margin-top: 16px;
+}
+
+.incidentsContainer {
+  background-color: #fafafa;
+}
+
+.incidentReportsHeader {
+  margin-bottom: 30px;
 }
 
 @media screen and (max-width: 800px) {
