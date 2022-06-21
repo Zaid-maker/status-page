@@ -120,13 +120,13 @@ function getStatusText(color) {
 
 function getStatusDescriptiveText(color) {
   return color == "nodata"
-    ? "No Data Available: Health Check was not performed."
+    ? "No Data Available: Health check was not performed."
     : color == "success"
     ? "No downtime recorded on this day."
     : color == "failure"
-    ? "Major Outages recorded on this day."
+    ? "Major outages recorded on this day."
     : color == "partial"
-    ? "Partial Outages recorded on this day."
+    ? "Partial outages recorded on this day."
     : "Unknown";
 }
 
@@ -146,7 +146,7 @@ function normalizeData(statusLines) {
   const dateNormalized = splitRowsByDate(rows);
 
   let relativeDateMap = {};
-  const row = Date.now();
+  const now = Date.now();
   for (const [key, val] of Object.entries(dateNormalized)) {
     if (key == "upTime") {
       continue;
@@ -155,6 +155,9 @@ function normalizeData(statusLines) {
     const relDays = getRelativeDays(now, new Date(key).getTime());
     relativeDateMap[relDays] = getDayAverage(val);
   }
+
+  relativeDateMap.upTime = dateNormalized.upTime;
+  return relativeDateMap;
 }
 
 function getDayAverage(val) {
@@ -171,8 +174,8 @@ function getRelativeDays(date1, date2) {
 
 function splitRowsByDate(rows) {
   let dateValues = {};
-  let sum = 0;
-  count = 0;
+  let sum = 0,
+    count = 0;
   for (var ii = 0; ii < rows.length; ii++) {
     const row = rows[ii];
     if (!row) {
@@ -198,7 +201,6 @@ function splitRowsByDate(rows) {
     if (resultStr.trim() == "success") {
       result = 1;
     }
-
     sum += result;
     count++;
 
