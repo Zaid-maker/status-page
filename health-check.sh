@@ -1,6 +1,6 @@
 commit=true
 origin=$(git remote get-url origin)
-if [[ $origin == *statsig-io/statuspage* ]]
+if [[ $origin == *Zaid-maker/status-page* ]]
 then
   commit=false
 fi
