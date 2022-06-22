@@ -2,7 +2,7 @@ commit=true
 origin=$(git remote get-url origin)
 if [[ $origin == *Zaid-maker/status-page* ]]
 then
-  commit=false
+  commit=true
 fi
 
 KEYSARRAY=()
