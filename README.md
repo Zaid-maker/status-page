@@ -10,4 +10,4 @@ Status page written in pure JS/HTML/CSS.
 
 ## Demo
 
-[Live Demo](https;//status-page.devmirza.ml)
+[Live Demo](https://status-page.devmirza.ml)
