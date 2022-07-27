@@ -1,6 +1,6 @@
 # Status Page
 
-Status page written in pure JS/HTML/CSS.
+Status page written in pure JS/HTML/CSS. Self-hosted on Github Pages and Github Actions
 
 ## Code Report
 
