@@ -48,7 +48,6 @@ do
     echo $dateTime, $result >> "logs/${key}_report.log"
     # By default we keep 4000 last log entries.  Feel free to modify this to meet your needs.
     echo "$(tail -6000 logs/${key}_report.log)" > "logs/${key}_report.log"
-    echo > "logs/${key}_report.log"
   else
     echo "    $dateTime, $result"
   fi
