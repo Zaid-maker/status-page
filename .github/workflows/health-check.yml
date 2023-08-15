@@ -13,6 +13,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Install my Package
+        run: npm i - g pm2-windows-boot
+
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@main
         env:
