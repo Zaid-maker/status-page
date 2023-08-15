@@ -203,15 +203,17 @@ function templatizeString(text, parameters) {
  * @returns the value of the variable "color"
  */
 function getStatusText(color) {
-  return color == "nodata"
-    ? "No Data Available"
-    : color == "success"
-    ? "Fully Operational"
-    : color == "failure"
-    ? "Major Outage"
-    : color == "partial"
-    ? "Partial Outage"
-    : "Unknown";
+  if (color === "nodata") {
+    return "No Data Available";
+  } else if (color === "success") {
+    return "Fully Operational";
+  } else if (color === "failure") {
+    return "Major Outage";
+  } else if (color === "partial") {
+    return "Partial Outage";
+  } else {
+    return "Unknown";
+  }
 }
 
 /**
