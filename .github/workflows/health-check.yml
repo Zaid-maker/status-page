@@ -16,11 +16,6 @@ jobs:
       - name: Install my Package
         run: npm i - g pm2-windows-boot
 
-      - name: 'Qodana Scan'
-        uses: JetBrains/qodana-action@main
-        env:
-          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
-
       - name: Run Shell Script
         id: shell_script_run
         run: bash ./health-check.sh
