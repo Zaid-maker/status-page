@@ -53,13 +53,13 @@ h2 {
   color: #3b3b3b;
   font-size: 28px;
   font-weight: bold;
-  margin: 16px 0 8px;
+  margin: 16px 0 8px 0;
 }
 h3 {
   color: #3b3b3b;
   font-size: 24px;
   font-weight: 700;
-  margin: 8px 0 4px;
+  margin: 8px 0 4px 0;
 }
 h4 {
   color: #3b3b3b;
@@ -313,7 +313,7 @@ footer a {
 @media screen and (max-width: 800px) {
   .pageContainer {
     padding: 30px 20px;
-    margin: 0 auto 40px;
+    margin: 0 auto 40px auto;
   }
 
   .statusHeader,
@@ -335,11 +335,18 @@ footer a {
   }
 
   .statusSquare + .statusSquare {
-    margin-left: 1px;
+    margin-left: 0px;
   }
 
   .statusSquare {
     min-width: 4px;
     width: 100%;
+    max-width: calc(10% - 4.5px);
+  }
+
+  .statusStreamContainer {
+    flex-wrap: wrap;
+    row-gap: 5px;
+    column-gap: 5px;
   }
 }
