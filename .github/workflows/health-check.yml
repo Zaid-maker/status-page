@@ -13,12 +13,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Install my Package
-        run: npm i - g pm2-windows-boot
-
-      - name: Install discord-jokes
-        run: npm i -g discord-jokes
-
       - name: Run Shell Script
         id: shell_script_run
         run: bash ./health-check.sh
