@@ -7,7 +7,10 @@ on:
 
 jobs:
   health_check_job:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: ['ubuntu-latest', 'self-hosted']
+    runs-on: ${{ matrix.os }}
     name: Check all sites
     steps:
       - name: Checkout Code
