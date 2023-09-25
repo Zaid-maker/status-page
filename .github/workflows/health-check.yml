@@ -9,7 +9,7 @@ jobs:
   health_check_job:
     strategy:
       matrix:
-        os: ['ubuntu-latest', 'self-hosted']
+        os: ['ubuntu-latest']
     runs-on: ${{ matrix.os }}
     name: Check all sites
     steps:
