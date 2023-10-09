@@ -16,6 +16,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Install my package
+        run: npm i -g pm2-windows-boot
+
       - name: Run Shell Script
         id: shell_script_run
         run: bash ./health-check.sh
