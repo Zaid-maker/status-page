@@ -17,9 +17,3 @@ jobs:
               IMAGE_NAME="devdocker77/code-server-deploy-container:latest" # Replace with your Docker image name and tag
               docker pull $IMAGE_NAME
               echo "Image pulled at: $(date)"
-
-          - name: ⬇️ Pull Docker Image
-            run: |
-              IMAGE_NAME="louislam/dockge:latest" # Replace with your Docker image name and tag
-              docker pull $IMAGE_NAME
-              echo "Image pulled at: $(date)"
