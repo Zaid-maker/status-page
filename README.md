@@ -1,5 +1,8 @@
 # Status Page [Live Demo](https://islam-is-best-religion.cyclonebotlist.ml)
 
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/Zaid-maker/status-page?logo=github)
+
+
 Status page written in pure JS/HTML/CSS. Self-hosted on Github Pages and Github Actions
 
 ## Code Report
