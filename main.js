@@ -59,9 +59,9 @@ function constructStatusStream(key, url, uptimeData) {
  * @returns A string of HTML code.
  */
 function constructStatusLine(key, relDay, upTimeArray) {
-  let date = new Date();
+  let date = new Date(Date.now());
   date.setDate(date.getDate() - relDay);
-
+  console.log(date);
   return constructStatusSquare(key, date, upTimeArray);
 }
 
@@ -133,7 +133,7 @@ function templatize(templateId, parameters) {
     return clone;
   }
 
-  applyTemplateSubstitutions(clone, parameters);
+    applyTemplateSubstitutions(clone, parameters);
   return clone;
 }
 
@@ -189,7 +189,7 @@ function applyTemplateSubstitutions(node, parameters) {
 function templatizeString(text, parameters) {
   if (parameters) {
     for (const [key, val] of Object.entries(parameters)) {
-      text = text.replaceAll("$" + key, val);
+      text = text.replace(new RegExp("\\$" + key, "g"), val);
     }
   }
   return text;
