@@ -61,7 +61,6 @@ function constructStatusStream(key, url, uptimeData) {
 function constructStatusLine(key, relDay, upTimeArray) {
   let date = new Date(Date.now());
   date.setDate(date.getDate() - relDay);
-  console.log(date);
   return constructStatusSquare(key, date, upTimeArray);
 }
 
