@@ -17,3 +17,7 @@ jobs:
               IMAGE_NAME="louislam/dockge:1.4.2"
               docker pull $IMAGE_NAME
               echo "Image pulled at: $(date)"
+
+          - name: 🧪 Run Tests in Container
+            run: |
+                docker run --rm $IMAGE_NAME npm test
