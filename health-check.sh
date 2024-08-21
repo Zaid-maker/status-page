@@ -1,7 +1,8 @@
-commit=true
+#!/bin/bash
+
+commit=false
 origin=$(git remote get-url origin)
-if [[ $origin == *Zaid-maker/status-page* ]]
-then
+if [[ $origin == *Zaid-maker/status-page* ]]; then
   commit=true
 fi
 
@@ -9,53 +10,59 @@ KEYSARRAY=()
 URLSARRAY=()
 
 urlsConfig="./urls.cfg"
+if [[ ! -f $urlsConfig ]]; then
+  echo "Error: Configuration file '$urlsConfig' not found!"
+  exit 1
+fi
+
 echo "Reading $urlsConfig"
-while read -r line
-do
-  echo "  $line"
-  IFS='=' read -ra TOKENS <<< "$line"
-  KEYSARRAY+=(${TOKENS[0]})
-  URLSARRAY+=(${TOKENS[1]})
+while IFS='=' read -r key url; do
+  if [[ -n $key && -n $url ]]; then
+    KEYSARRAY+=("$key")
+    URLSARRAY+=("$url")
+    echo "  $key=$url"
+  else
+    echo "Warning: Skipping invalid line '$key=$url'"
+  fi
 done < "$urlsConfig"
+
+if [[ ${#KEYSARRAY[@]} -eq 0 ]]; then
+  echo "Error: No valid URLs found in configuration file."
+  exit 1
+fi
 
 echo "***********************"
 echo "Starting health checks with ${#KEYSARRAY[@]} configs:"
 
 mkdir -p logs
 
-for (( index=0; index < ${#KEYSARRAY[@]}; index++))
-do
+for index in "${!KEYSARRAY[@]}"; do
   key="${KEYSARRAY[index]}"
   url="${URLSARRAY[index]}"
-  echo "  $key=$url"
+  echo "  Checking $key: $url"
 
-  for i in 1 2 3 4; 
-  do
-    response=$(curl --write-out '%{http_code}' --silent --output /dev/null $url)
-    if [ "$response" -eq 200 ] || [ "$response" -eq 202 ] || [ "$response" -eq 301 ] || [ "$response" -eq 307 ]; then
+  result="failed"
+  for attempt in {1..4}; do
+    response=$(curl --write-out '%{http_code}' --silent --output /dev/null "$url")
+    if [[ "$response" =~ ^(200|202|301|307)$ ]]; then
       result="success"
-    else
-      result="failed"
-    fi
-    if [ "$result" = "success" ]; then
       break
     fi
     sleep 5
   done
+
   dateTime=$(date +'%Y-%m-%d %H:%M')
-  if [[ $commit == true ]]
-  then
-    echo $dateTime, $result >> "logs/${key}_report.log"
-    # By default we keep 4000 last log entries.  Feel free to modify this to meet your needs.
+  logEntry="$dateTime, $result (HTTP $response)"
+  
+  if [[ $commit == true ]]; then
+    echo "$logEntry" >> "logs/${key}_report.log"
     echo "$(tail -6000 logs/${key}_report.log)" > "logs/${key}_report.log"
   else
-    echo "    $dateTime, $result"
+    echo "    $logEntry"
   fi
 done
 
-if [[ $commit == true ]]
-then
-  # Let's make Vijaye the most productive person on GitHub.
+if [[ $commit == true ]]; then
   git config --global user.name 'Zaid-maker'
   git config --global user.email 'pzhafeez@gmail.com'
   git add -A --force logs/
