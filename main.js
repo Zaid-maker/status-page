@@ -414,7 +414,7 @@ function hideTooltip() {
   tooltipTimeout = setTimeout(() => {
     const toolTipDiv = document.getElementById("tooltip");
     toolTipDiv.style.opacity = "0";
-  }, 1000);
+  }, 500);  // Slight delay before hiding the tooltip
 }
 
 /**
