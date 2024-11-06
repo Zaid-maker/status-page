@@ -3,7 +3,7 @@ name: Scheduled Health Check
 # Controls when the action will run.
 on:
   schedule:
-    - cron: "0 */3 * * *"
+    - cron: "0,15,30,45 * * * *"
   workflow_dispatch:
 
 jobs:
