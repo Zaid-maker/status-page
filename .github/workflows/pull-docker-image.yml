@@ -14,6 +14,6 @@ jobs:
 
           - name: ⬇️ Pull Docker Image
             run: |
-              IMAGE_NAME="louislam/dockge:1.4.2"
+              IMAGE_NAME="ghcr.io/louislam/uptime-kuma:nightly2"
               docker pull $IMAGE_NAME
               echo "Image pulled at: $(date)"
