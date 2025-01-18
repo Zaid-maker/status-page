@@ -10,7 +10,7 @@ jobs:
   health_check_job:
     strategy:
       matrix:
-        os: ['ubuntu-24.02-arm']
+        os: ['ubuntu-24.04-arm']
     runs-on: ${{ matrix.os }}
     name: Check all sites
     steps:
