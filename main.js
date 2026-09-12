@@ -8,6 +8,9 @@ const maxDays = 30;
  * @param url - The URL of the website to be tested
  */
 async function genReportLog(container, key, url) {
+  if (!/^[a-zA-Z0-9_\-]+$/.test(key)) {
+    return;
+  }
   const response = await fetch("logs/" + key + "_report.log");
   let statusLines = "";
   if (response.ok) {
